@@ -1,0 +1,8 @@
+version: '3.9'
+services:
+  php:
+    image: webdevops/php-dev:8.1
+    working_dir: /app
+    container_name: cw-php
+    volumes:
+      - .:/app

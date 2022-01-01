@@ -1,0 +1,23 @@
+{
+    "name": "kdabrow/crypto-worker",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.1"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.23"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kdabrow\\CryptoWorker\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Kdabrow\\CryptoWorker\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
