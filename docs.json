@@ -1,0 +1,1255 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Crypto worker API",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/v1/exchanges": {
+            "get": {
+                "summary": "Display the list of exchange items",
+                "operationId": "09523aec344a87c68273120dcc707722",
+                "responses": {
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/ExchangeResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Store new exchange",
+                "operationId": "ce3324e44719d74a3194502d5d391c83",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/exchanges/{exchange}": {
+            "get": {
+                "summary": "Display the exchange",
+                "operationId": "2ee0cc2c67cf7fed65eb0dc244912093",
+                "parameters": [
+                    {
+                        "name": "exchange",
+                        "in": "path",
+                        "description": "Exchange id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "uuid": {
+                                "summary": "An UUID value.",
+                                "value": "0006faf6-7a61-426c-9034-579f2cfcfa83"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update the exchange",
+                "operationId": "e13eaa0b2af6acf78a6cd8388f16a5ed",
+                "parameters": [
+                    {
+                        "name": "exchange",
+                        "in": "path",
+                        "description": "Exchange id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "uuid": {
+                                "summary": "An UUID value.",
+                                "value": "0006faf6-7a61-426c-9034-579f2cfcfa83"
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "200": {
+                        "description": "Updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remove the exchange",
+                "operationId": "c5fdf549af55db361d1bf0a531afe641",
+                "parameters": [
+                    {
+                        "name": "exchange",
+                        "in": "path",
+                        "description": "Exchange id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "uuid": {
+                                "summary": "An UUID value.",
+                                "value": "0006faf6-7a61-426c-9034-579f2cfcfa83"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "410": {
+                        "description": "Resource already deleted"
+                    },
+                    "201": {
+                        "description": "Deleted"
+                    }
+                }
+            }
+        },
+        "/api/v1/klines": {
+            "get": {
+                "summary": "Display the list of kline items",
+                "operationId": "c46cd2ad6a57dece9e8bced234100698",
+                "responses": {
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/KlineResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Store new kline",
+                "operationId": "1762e7c5e66e3b0bca0688c1aaf54005",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/klines/{kline}": {
+            "get": {
+                "summary": "Display the kline",
+                "operationId": "f02cfac6ba4287dd77152a1961f85407",
+                "parameters": [
+                    {
+                        "name": "kline",
+                        "in": "path",
+                        "description": "Kline id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "uuid": {
+                                "summary": "An UUID value.",
+                                "value": "0006faf6-7a61-426c-9034-579f2cfcfa83"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update the kline",
+                "operationId": "d2dc069cc6d511047623ca81e4549567",
+                "parameters": [
+                    {
+                        "name": "kline",
+                        "in": "path",
+                        "description": "Kline id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "uuid": {
+                                "summary": "An UUID value.",
+                                "value": "0006faf6-7a61-426c-9034-579f2cfcfa83"
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "200": {
+                        "description": "Updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remove the kline",
+                "operationId": "c2b2e2253e74701cff6d7e66e44c8351",
+                "parameters": [
+                    {
+                        "name": "kline",
+                        "in": "path",
+                        "description": "Kline id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "uuid": {
+                                "summary": "An UUID value.",
+                                "value": "0006faf6-7a61-426c-9034-579f2cfcfa83"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "410": {
+                        "description": "Resource already deleted"
+                    },
+                    "201": {
+                        "description": "Deleted"
+                    }
+                }
+            }
+        },
+        "/api/v1/strategies": {
+            "get": {
+                "summary": "Display the list of strategy items",
+                "operationId": "325860981012d34c0d15174aac75ecfa",
+                "responses": {
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/StrategyResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Store new strategy",
+                "operationId": "da60f92620259e60d2907e53b9017577",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/strategies/{strategy}": {
+            "get": {
+                "summary": "Display the strategy",
+                "operationId": "49a629ffdb09bab5fea03ecba52c84b0",
+                "parameters": [
+                    {
+                        "name": "strategy",
+                        "in": "path",
+                        "description": "Strategy id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "uuid": {
+                                "summary": "An UUID value.",
+                                "value": "0006faf6-7a61-426c-9034-579f2cfcfa83"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update the strategy",
+                "operationId": "848c40ee35522d037c6ec12f71846f1a",
+                "parameters": [
+                    {
+                        "name": "strategy",
+                        "in": "path",
+                        "description": "Strategy id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "uuid": {
+                                "summary": "An UUID value.",
+                                "value": "0006faf6-7a61-426c-9034-579f2cfcfa83"
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "200": {
+                        "description": "Updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remove the strategy",
+                "operationId": "9c8bd9105738783359d78968614286f6",
+                "parameters": [
+                    {
+                        "name": "strategy",
+                        "in": "path",
+                        "description": "Strategy id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "uuid": {
+                                "summary": "An UUID value.",
+                                "value": "0006faf6-7a61-426c-9034-579f2cfcfa83"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "410": {
+                        "description": "Resource already deleted"
+                    },
+                    "201": {
+                        "description": "Deleted"
+                    }
+                }
+            }
+        },
+        "/api/v1/users": {
+            "get": {
+                "summary": "Display the list of user items",
+                "operationId": "8b9b6dd4a1fc456ba0015b832ebe8db9",
+                "responses": {
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/UserResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Store new user",
+                "operationId": "6fde382f05bb188821e3fecce7544b28",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResource"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/v1/users/{user}": {
+            "get": {
+                "summary": "Display the user",
+                "operationId": "a2ca1ebe0c464c13052458a4e749a999",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "uuid": {
+                                "summary": "An UUID value.",
+                                "value": "0006faf6-7a61-426c-9034-579f2cfcfa83"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update the user",
+                "operationId": "aa06d7c2a5c15e81ff1cb923b218e5ad",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "uuid": {
+                                "summary": "An UUID value.",
+                                "value": "0006faf6-7a61-426c-9034-579f2cfcfa83"
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "200": {
+                        "description": "Updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remove the user",
+                "operationId": "fde7e2a4c13de8c34c2e86b89a7f20a0",
+                "parameters": [
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "uuid": {
+                                "summary": "An UUID value.",
+                                "value": "0006faf6-7a61-426c-9034-579f2cfcfa83"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "410": {
+                        "description": "Resource already deleted"
+                    },
+                    "201": {
+                        "description": "Deleted"
+                    }
+                }
+            }
+        },
+        "/api/v1/workers": {
+            "get": {
+                "summary": "Display the list of worker items",
+                "operationId": "ea2345c388e4aff02571c9f772b34e59",
+                "responses": {
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/components/schemas/WorkerResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Store new worker",
+                "operationId": "dc51ed5f8de0e19345f6848459fe93ce",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/workers/{worker}": {
+            "get": {
+                "summary": "Display the worker",
+                "operationId": "1e2cd1a674ff3276fa833c721aa241a3",
+                "parameters": [
+                    {
+                        "name": "worker",
+                        "in": "path",
+                        "description": "Worker id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "uuid": {
+                                "summary": "An UUID value.",
+                                "value": "0006faf6-7a61-426c-9034-579f2cfcfa83"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "200": {
+                        "description": "Ok",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update the worker",
+                "operationId": "ca385545d04b9b0a5800f3fbfd587827",
+                "parameters": [
+                    {
+                        "name": "worker",
+                        "in": "path",
+                        "description": "Worker id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "uuid": {
+                                "summary": "An UUID value.",
+                                "value": "0006faf6-7a61-426c-9034-579f2cfcfa83"
+                            }
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {}
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Validation error"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "200": {
+                        "description": "Updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remove the worker",
+                "operationId": "0a77dd0901d9e94c8927302ee5a7348d",
+                "parameters": [
+                    {
+                        "name": "worker",
+                        "in": "path",
+                        "description": "Worker id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "uuid": {
+                                "summary": "An UUID value.",
+                                "value": "0006faf6-7a61-426c-9034-579f2cfcfa83"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "410": {
+                        "description": "Resource already deleted"
+                    },
+                    "201": {
+                        "description": "Deleted"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ExchangeStoreRequest": {
+                "title": "Request for create Exchange entity",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "credentials": {
+                        "description": "",
+                        "type": "jsonb",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            },
+            "KlineStoreRequest": {
+                "title": "Request for create Kline entity",
+                "properties": {
+                    "pair": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "exchange_id": {
+                        "description": "",
+                        "type": "uuid",
+                        "example": ""
+                    },
+                    "timestamp": {
+                        "description": "",
+                        "type": "timestamp",
+                        "example": ""
+                    },
+                    "interval": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "open": {
+                        "description": "",
+                        "type": "decimal",
+                        "example": ""
+                    },
+                    "high": {
+                        "description": "",
+                        "type": "decimal",
+                        "example": ""
+                    },
+                    "low": {
+                        "description": "",
+                        "type": "decimal",
+                        "example": ""
+                    },
+                    "close": {
+                        "description": "",
+                        "type": "decimal",
+                        "example": ""
+                    },
+                    "volume": {
+                        "description": "",
+                        "type": "decimal",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            },
+            "StrategyStoreRequest": {
+                "title": "Request for create Strategy entity",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "kandle_interval": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "refresh_interval": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            },
+            "UserStoreRequest": {
+                "title": "Request for create User entity",
+                "properties": {
+                    "name": {
+                        "description": "User name",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "email": {
+                        "description": "User email address",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "password": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            },
+            "WorkerStoreRequest": {
+                "title": "Request for create Worker entity",
+                "properties": {
+                    "strategy_id": {
+                        "description": "",
+                        "type": "uuid",
+                        "example": ""
+                    },
+                    "exchange_id": {
+                        "description": "",
+                        "type": "uuid",
+                        "example": ""
+                    },
+                    "pair": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "kandle_interval": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "refresh_interval": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            },
+            "ExchangeUpdateRequest": {
+                "title": "Request for update Exchange entity",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "credentials": {
+                        "description": "",
+                        "type": "jsonb",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            },
+            "KlineUpdateRequest": {
+                "title": "Request for update Kline entity",
+                "properties": {
+                    "pair": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "exchange_id": {
+                        "description": "",
+                        "type": "uuid",
+                        "example": ""
+                    },
+                    "timestamp": {
+                        "description": "",
+                        "type": "timestamp",
+                        "example": ""
+                    },
+                    "interval": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "open": {
+                        "description": "",
+                        "type": "decimal",
+                        "example": ""
+                    },
+                    "high": {
+                        "description": "",
+                        "type": "decimal",
+                        "example": ""
+                    },
+                    "low": {
+                        "description": "",
+                        "type": "decimal",
+                        "example": ""
+                    },
+                    "close": {
+                        "description": "",
+                        "type": "decimal",
+                        "example": ""
+                    },
+                    "volume": {
+                        "description": "",
+                        "type": "decimal",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            },
+            "StrategyUpdateRequest": {
+                "title": "Request for update Strategy entity",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "kandle_interval": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "refresh_interval": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            },
+            "UserUpdateRequest": {
+                "title": "Request for update User entity",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "email": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            },
+            "WorkerUpdateRequest": {
+                "title": "Request for update Worker entity",
+                "properties": {
+                    "strategy_id": {
+                        "description": "",
+                        "type": "uuid",
+                        "example": ""
+                    },
+                    "exchange_id": {
+                        "description": "",
+                        "type": "uuid",
+                        "example": ""
+                    },
+                    "pair": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "kandle_interval": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "refresh_interval": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            },
+            "ExchangeResource": {
+                "title": "Response for Exchange entity",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "uuid",
+                        "example": ""
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            },
+            "KlineResource": {
+                "title": "Response for Kline entity",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "bigIncrements",
+                        "example": ""
+                    },
+                    "pair": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "exchange_id": {
+                        "description": "",
+                        "type": "uuid",
+                        "example": ""
+                    },
+                    "timestamp": {
+                        "description": "",
+                        "type": "timestamp",
+                        "example": ""
+                    },
+                    "interval": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "open": {
+                        "description": "",
+                        "type": "decimal",
+                        "example": ""
+                    },
+                    "high": {
+                        "description": "",
+                        "type": "decimal",
+                        "example": ""
+                    },
+                    "low": {
+                        "description": "",
+                        "type": "decimal",
+                        "example": ""
+                    },
+                    "close": {
+                        "description": "",
+                        "type": "decimal",
+                        "example": ""
+                    },
+                    "volume": {
+                        "description": "",
+                        "type": "decimal",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            },
+            "StrategyResource": {
+                "title": "Response for Strategy entity",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "uuid",
+                        "example": ""
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "kandle_interval": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "refresh_interval": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            },
+            "UserResource": {
+                "title": "Response for User entity",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "email": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            },
+            "WorkerResource": {
+                "title": "Response for Worker entity",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "uuid",
+                        "example": ""
+                    },
+                    "strategy_id": {
+                        "description": "",
+                        "type": "uuid",
+                        "example": ""
+                    },
+                    "exchange_id": {
+                        "description": "",
+                        "type": "uuid",
+                        "example": ""
+                    },
+                    "pair": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "kandle_interval": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "refresh_interval": {
+                        "description": "",
+                        "type": "string",
+                        "example": ""
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}

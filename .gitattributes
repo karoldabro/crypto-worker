@@ -1,0 +1,4 @@
+/tests              export-ignore
+/phpunit.xml        export-ignore
+/docker-compose.yml export-ignore
+/Worker.json        export-ignore

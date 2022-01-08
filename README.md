@@ -1,2 +1,11 @@
 # Crypto worker
-It's a Laravel package that handles crypto traiding
+It's a Laravel package that implements crypto traiding bot.
+
+## Testing
+```shell
+docker compose run php vendor/bin/phpunit --coverage-text
+```
+## Generate documentation
+```shell
+docker compose run php vendor/bin/openapi /app/src --output docs.json
+```

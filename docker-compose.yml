@@ -6,3 +6,5 @@ services:
     container_name: cw-php
     volumes:
       - .:/app
+    environment:
+      - XDEBUG_MODE=coverage
