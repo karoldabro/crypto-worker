@@ -2,12 +2,15 @@
 
 namespace Kdabrow\CryptoWorker\Tests;
 
+use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Kdabrow\CryptoWorker\CryptoWorkerProvider;
 use Laravel\Sanctum\SanctumServiceProvider;
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
 
 class TestCase extends TestbenchTestCase
 {
+    use LazilyRefreshDatabase;
+
     protected $loadEnvironmentVariables = true;
 
     protected function getPackageProviders($app)

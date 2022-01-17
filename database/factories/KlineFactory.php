@@ -2,6 +2,7 @@
 
 namespace Kdabrow\CryptoWorker\Database\Factories;
 
+use Carbon\CarbonInterface;
 use Kdabrow\CryptoWorker\Models\Kline;
 use Kdabrow\CryptoWorker\Models\Exchange;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -23,5 +24,14 @@ class KlineFactory extends Factory
             'close' => $this->faker->randomNumber(),
             'volume' => $this->faker->randomNumber(),
         ];
+    }
+
+    public function until(CarbonInterface $until)
+    {
+        return $this->state(function (array $parameters) use ($until) {
+            return [
+                'timestamp' => $this->faker->dateTime($until),
+            ];
+        });
     }
 }

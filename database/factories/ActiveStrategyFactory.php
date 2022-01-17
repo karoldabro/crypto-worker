@@ -2,14 +2,14 @@
 
 namespace Kdabrow\CryptoWorker\Database\Factories;
 
-use Kdabrow\CryptoWorker\Models\Worker;
+use Kdabrow\CryptoWorker\Models\ActiveStrategy;
 use Kdabrow\CryptoWorker\Models\Strategy;
 use Kdabrow\CryptoWorker\Models\Exchange;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class WorkerFactory extends Factory
+class ActiveStrategyFactory extends Factory
 {
-    protected $model = Worker::class;
+    protected $model = ActiveStrategy::class;
 
     public function definition()
     {
@@ -17,8 +17,9 @@ class WorkerFactory extends Factory
             'strategy_id' => Strategy::factory(),
             'exchange_id' => Exchange::factory(),
             'pair' => $this->faker->currencyCode().":".$this->faker->currencyCode(),
-            'kandle_interval' => '15m',
-            'refresh_interval' => '1m',
+            'kline_interval' => '15m',
+            'kline_quantity' => $this->faker->numberBetween(50, 300),
+            'refresh_interval' => 'PT'.$this->faker->numberBetween(1, 59).'M',
         ];
     }
 }

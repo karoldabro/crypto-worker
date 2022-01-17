@@ -5,7 +5,8 @@
     "require": {
         "php": "^8.1",
         "dyrynda/laravel-model-uuid": "^6.5",
-        "laravel/sanctum": "^2.13"
+        "laravel/sanctum": "^2.13",
+        "kdabrow/crypto-worker-contract": "dev-master"
     },
     "require-dev": {
         "orchestra/testbench": "^6.23",
@@ -30,5 +31,12 @@
         "post-autoload-dump": [
             "@php ./vendor/bin/testbench package:discover --ansi"
         ]
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:karoldabro/crypto-worker-contract.git",
+            "symlink": false
+        }
+    ]
 }

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Kdabrow\CryptoWorker\Http\Controllers\UserController;
-use Kdabrow\CryptoWorker\Http\Controllers\WorkerController;
+use Kdabrow\CryptoWorker\Http\Controllers\ActiveStrategyController;
 use Kdabrow\CryptoWorker\Http\Controllers\KlineController;
 use Kdabrow\CryptoWorker\Http\Controllers\StrategyController;
 use Kdabrow\CryptoWorker\Http\Controllers\ExchangeController;
@@ -15,12 +15,12 @@ Route::group(['middleware' =>['auth:sanctum', 'bindings'], 'prefix' => 'api/v1/u
     Route::delete('/{user}', [UserController::class, 'destroy']);
 });
 
-Route::group(['middleware' =>['auth:sanctum', 'bindings'], 'prefix' => 'api/v1/workers'], function() {
-    Route::get('/', [WorkerController::class, 'index']);
-    Route::get('/{worker}', [WorkerController::class, 'show']);
-    Route::post('/', [WorkerController::class, 'store']);
-    Route::put('/{worker}', [WorkerController::class, 'update']);
-    Route::delete('/{worker}', [WorkerController::class, 'destroy']);
+Route::group(['middleware' =>['auth:sanctum', 'bindings'], 'prefix' => 'api/v1/active_strategies'], function() {
+    Route::get('/', [ActiveStrategyController::class, 'index']);
+    Route::get('/{activestrategy}', [ActiveStrategyController::class, 'show']);
+    Route::post('/', [ActiveStrategyController::class, 'store']);
+    Route::put('/{activestrategy}', [ActiveStrategyController::class, 'update']);
+    Route::delete('/{activestrategy}', [ActiveStrategyController::class, 'destroy']);
 });
 
 Route::group(['middleware' =>['auth:sanctum', 'bindings'], 'prefix' => 'api/v1/klines'], function() {

@@ -2,6 +2,7 @@
 
 namespace Kdabrow\CryptoWorker\Repositories;
 
+use Carbon\CarbonInterface;
 use Kdabrow\CryptoWorker\Models\Kline;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,5 +22,22 @@ class KlineRepository extends Repository
     public function getModel(): Model
     {
         return new Kline;
+    }
+
+    public function existsInGivenPeriod(
+        string $pair,
+        string $interval,
+        string $exchangeId,
+        CarbonInterface $since
+    ): bool
+    {
+        return $this
+            ->getModel()
+            ->query()
+            ->where('pair', '=', $pair)
+            ->where('interval', '=', $interval)
+            ->where('exchange_id', '=', $exchangeId)
+            ->where('timestamp', '>=', $since)
+            ->exists();
     }
 }

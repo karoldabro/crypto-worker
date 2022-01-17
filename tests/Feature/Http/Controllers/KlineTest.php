@@ -1,16 +1,13 @@
 <?php
 
-namespace Kdabrow\CryptoWorker\Tests\Feature;
+namespace Kdabrow\CryptoWorker\Tests\Feature\Http\Controllers;
 
-use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Kdabrow\CryptoWorker\Tests\TestCase;
 use Kdabrow\CryptoWorker\Models\User;
 use Kdabrow\CryptoWorker\Models\Kline;
 
 class KlineTest extends TestCase
 {
-    use LazilyRefreshDatabase;
-
     /** @test */
     public function it_response_in_correct_structure_after_create_kline()
     {
