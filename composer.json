@@ -10,6 +10,7 @@
     },
     "require-dev": {
         "orchestra/testbench": "^6.23",
+        "mockery/mockery": "dev-master",
         "darkaonline/l5-swagger": "^8.1"
     },
     "autoload": {

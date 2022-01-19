@@ -1,6 +1,6 @@
 <?php
 
-namespace Kdabrow\CryptoWorker\Tests\Feature\Http\Controllers;
+namespace Kdabrow\CryptoWorker\Tests\Http\Controllers;
 
 use Kdabrow\CryptoWorker\Tests\TestCase;
 use Kdabrow\CryptoWorker\Models\User;
@@ -17,7 +17,7 @@ class KlineTest extends TestCase
 
         $this->json('POST', 'api/v1/klines', $kline)
             ->assertStatus(201)
-            ->assertJsonStructure([
+                ->assertJsonStructure([
                 'id',
                 'pair',
                 'exchange_id',

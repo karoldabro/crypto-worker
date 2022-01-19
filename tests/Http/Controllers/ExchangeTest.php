@@ -1,6 +1,6 @@
 <?php
 
-namespace Kdabrow\CryptoWorker\Tests\Feature\Http\Controllers;
+namespace Kdabrow\CryptoWorker\Tests\Http\Controllers;
 
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
 use Kdabrow\CryptoWorker\Tests\TestCase;

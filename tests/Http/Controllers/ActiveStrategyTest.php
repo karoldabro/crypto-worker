@@ -1,6 +1,6 @@
 <?php
 
-namespace Kdabrow\CryptoWorker\Tests\Feature\Http\Controllers;
+namespace Kdabrow\CryptoWorker\Tests\Http\Controllers;
 
 use Kdabrow\CryptoWorker\Tests\TestCase;
 use Kdabrow\CryptoWorker\Models\User;

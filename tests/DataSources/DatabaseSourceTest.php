@@ -1,6 +1,6 @@
 <?php
 
-namespace Kdabrow\CryptoWorker\Tests\Unit;
+namespace Kdabrow\CryptoWorker\Tests\DataSources;
 
 use Carbon\Carbon;
 use Kdabrow\CryptoWorker\DataSources\DatabaseSource;

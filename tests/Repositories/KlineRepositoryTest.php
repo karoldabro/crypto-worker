@@ -1,6 +1,6 @@
 <?php
 
-namespace Kdabrow\CryptoWorker\Tests\Feature\Repositories;
+namespace Kdabrow\CryptoWorker\Tests\Repositories;
 
 use Carbon\Carbon;
 use Kdabrow\CryptoWorker\Models\Exchange;

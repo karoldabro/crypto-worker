@@ -1,0 +1,11 @@
+{
+    "phpunit.command": "docker compose run --rm php",
+    "phpunit.phpunit": "/app/vendor/bin/phpunit",
+    "phpunit.paths": {
+        "${workspaceFolder}": "/app"
+    },
+    "phpunit.args": [
+        "--configuration",
+        "/app/phpunit.xml"
+    ]
+}
