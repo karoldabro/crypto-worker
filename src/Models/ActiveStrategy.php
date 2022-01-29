@@ -8,7 +8,7 @@ use Dyrynda\Database\Support\GeneratesUuid;
 use Kdabrow\CryptoWorker\Casts\IntervalCast;
 use Kdabrow\CryptoWorker\Database\Factories\ActiveStrategyFactory;
 use Kdabrow\CryptoWorker\Models\Traits\HasStrategyConfiguration;
-use Kdabrow\CryptoWorkerContract\Worker\ConfigurationInterface;
+use Kdabrow\CryptoWorkerContract\Worker\WorkerDataInterface;
 
 /**
  * Class ActiveStrategy
@@ -22,7 +22,7 @@ use Kdabrow\CryptoWorkerContract\Worker\ConfigurationInterface;
  * @property integer $kline_quantity How much klines goes to strategy calculation 
  * @property string $refresh_interval How frequently strategy is calculated
  */
-class ActiveStrategy extends Model implements ConfigurationInterface
+class ActiveStrategy extends Model implements WorkerDataInterface
 {
     use HasFactory, GeneratesUuid, HasStrategyConfiguration;
 

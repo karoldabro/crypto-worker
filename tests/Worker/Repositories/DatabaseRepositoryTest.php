@@ -1,15 +1,15 @@
 <?php
 
-namespace Kdabrow\CryptoWorker\Tests\DataSources;
+namespace Kdabrow\CryptoWorker\Tests\Worker\Repositories;
 
 use Carbon\Carbon;
-use Kdabrow\CryptoWorker\DataSources\DatabaseSource;
+use Kdabrow\CryptoWorker\Worker\Repositories\DatabaseRepository;
 use Kdabrow\CryptoWorker\Models\ActiveStrategy;
 use Kdabrow\CryptoWorker\Models\Kline;
 use Kdabrow\CryptoWorker\Repositories\KlineRepository;
 use Kdabrow\CryptoWorker\Tests\TestCase;
 
-class DatabaseSourceTest extends TestCase
+class DatabaseRepositoryTest extends TestCase
 {
     /** @test */
     public function it_is_synced_while_database_has_klines_from_strategy_refresh_interval()
@@ -20,7 +20,7 @@ class DatabaseSourceTest extends TestCase
 
         Kline::factory(['interval' => '15m', 'pair' => 'USD:BTC', 'exchange_id' => $as->exchange_id, 'timestamp' => $since])->create();
 
-        $source = new DatabaseSource($as, new KlineRepository);
+        $source = new DatabaseRepository($as, new KlineRepository);
 
         $this->assertTrue($source->isSynced($since));
     }
@@ -34,7 +34,7 @@ class DatabaseSourceTest extends TestCase
 
         Kline::factory(['interval' => '15m', 'pair' => 'USD:BTC', 'exchange_id' => $as->exchange_id, 'timestamp' => $since])->create();
 
-        $source = new DatabaseSource($as, new KlineRepository);
+        $source = new DatabaseRepository($as, new KlineRepository);
 
         $this->assertTrue($source->isSynced($since));
     }
@@ -48,7 +48,7 @@ class DatabaseSourceTest extends TestCase
 
         Kline::factory(['interval' => '15m', 'pair' => 'USD:BTC', 'exchange_id' => $as->exchange_id, 'timestamp' => $since])->create();
 
-        $source = new DatabaseSource($as, new KlineRepository);
+        $source = new DatabaseRepository($as, new KlineRepository);
 
         $this->assertTrue($source->isSynced($since));
     }
