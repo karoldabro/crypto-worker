@@ -14,7 +14,7 @@ class KlineFactory extends Factory
     public function definition()
     {
         return [ 
-            'pair' => $this->faker->currencyCode().":".$this->faker->currencyCode(),
+            'symbol' => $this->faker->currencyCode().":".$this->faker->currencyCode(),
             'exchange_id' => Exchange::factory(),
             'timestamp' => $this->faker->dateTime,
             'interval' => '15m',

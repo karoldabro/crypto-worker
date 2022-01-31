@@ -9,7 +9,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     schema="KlineResource",
  *     title="Response for Kline entity", 
  *     @OA\Property(property="id", type="bigIncrements", description="", example=""),
- *     @OA\Property(property="pair", type="string", description="", example=""),
+ *     @OA\Property(property="symbol", type="string", description="", example=""),
  *     @OA\Property(property="exchange_id", type="uuid", description="", example=""),
  *     @OA\Property(property="timestamp", type="timestamp", description="", example=""),
  *     @OA\Property(property="interval", type="string", description="", example=""),
@@ -18,6 +18,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
  *     @OA\Property(property="low", type="decimal", description="", example=""),
  *     @OA\Property(property="close", type="decimal", description="", example=""),
  *     @OA\Property(property="volume", type="decimal", description="", example=""),
+ *     @OA\Property(property="indicators", type="jsonb", description="", example=""),
+ *     @OA\Property(property="other_data", type="jsonb", description="", example=""),
  * )
  */
 class KlineResource extends JsonResource
@@ -26,7 +28,7 @@ class KlineResource extends JsonResource
     {
         return [ 
             'id' => $this->id,
-            'pair' => $this->pair,
+            'symbol' => $this->symbol,
             'exchange_id' => $this->exchange_id,
             'timestamp' => $this->timestamp,
             'interval' => $this->interval,
@@ -35,6 +37,8 @@ class KlineResource extends JsonResource
             'low' => $this->low,
             'close' => $this->close,
             'volume' => $this->volume,
+            'indicators' => $this->indicators,
+            'other_data' => $this->other_data,
         ];
     }
 }

@@ -17,9 +17,9 @@ trait HasStrategyConfiguration
         return $this->exchange_id;
     }
 
-    public function getPair(): string
+    public function getSymbol(): string
     {
-        return $this->pair;
+        return $this->symbol;
     }
 
     public function getKlineInterval(): Interval|string

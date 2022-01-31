@@ -18,7 +18,7 @@ class WorkerTest extends TestCase
     /** @test */
     public function it_do_not_update_klines_when_are_already_updated()
     {
-        $as = ActiveStrategy::factory(['pair' => 'USD:BTC', 'kline_interval' => '15m', 'refresh_interval' => 'T5M'])->create();
+        $as = ActiveStrategy::factory(['symbol' => 'USD:BTC', 'kline_interval' => '15m', 'refresh_interval' => 'T5M'])->create();
 
         $calculationDate = new Carbon();
         $klinesCollection = new Collection([]);

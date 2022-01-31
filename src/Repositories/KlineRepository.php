@@ -25,7 +25,7 @@ class KlineRepository extends Repository
     }
 
     public function existsInGivenPeriod(
-        string $pair,
+        string $symbol,
         string $interval,
         string $exchangeId,
         CarbonInterface $since
@@ -34,7 +34,7 @@ class KlineRepository extends Repository
         return $this
             ->getModel()
             ->query()
-            ->where('pair', '=', $pair)
+            ->where('symbol', '=', $symbol)
             ->where('interval', '=', $interval)
             ->where('exchange_id', '=', $exchangeId)
             ->where('timestamp', '>=', $since)

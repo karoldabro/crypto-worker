@@ -6,6 +6,7 @@ use Kdabrow\CryptoWorker\Http\Controllers\ActiveStrategyController;
 use Kdabrow\CryptoWorker\Http\Controllers\KlineController;
 use Kdabrow\CryptoWorker\Http\Controllers\StrategyController;
 use Kdabrow\CryptoWorker\Http\Controllers\ExchangeController;
+use Kdabrow\CryptoWorker\Http\Controllers\OrderController;
 
 Route::group(['middleware' =>['auth:sanctum', 'bindings'], 'prefix' => 'api/v1/users'], function() {
     Route::get('/', [UserController::class, 'index']);
@@ -45,4 +46,12 @@ Route::group(['middleware' =>['auth:sanctum', 'bindings'], 'prefix' => 'api/v1/s
     Route::post('/', [StrategyController::class, 'store']);
     Route::put('/{strategy}', [StrategyController::class, 'update']);
     Route::delete('/{strategy}', [StrategyController::class, 'destroy']);
+});
+
+Route::group(['middleware' =>['auth:sanctum', 'bindings'], 'prefix' => 'api/v1/orders'], function() {
+    Route::get('/', [OrderController::class, 'index']);
+    Route::get('/{order}', [OrderController::class, 'show']);
+    Route::post('/', [OrderController::class, 'store']);
+    Route::put('/{order}', [OrderController::class, 'update']);
+    Route::delete('/{order}', [OrderController::class, 'destroy']);
 });

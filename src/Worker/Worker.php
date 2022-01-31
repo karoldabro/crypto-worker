@@ -19,8 +19,14 @@ class Worker
 
     public function executeStrategy(StrategyInterface $strategy, CarbonInterface $calculationDate): void
     {
-        if ($this->repository->isSynced($calculationDate) == false) {
-            $this->repository->update();
+        if ($quantityOfMissingKlines = $this->repository->isSynced($calculationDate)) {
+            $klines = $this->exchange->klines(
+                $this->data->getSymbol(),
+                $this->data->getKlineInterval(),
+                $quantityOfMissingKlines
+            );
+
+            $this->repository->updateKlines($klines);
         }
 
         $klines = $this->repository->get(
@@ -29,6 +35,14 @@ class Worker
         );
 
         $calculation = $strategy->calculate($klines);
+
+        if ($calculation->indicators) {
+            $this->repository->updateIndicators($calculation->indicators);
+        }
+
+        if ($calculation->otherData) {
+            $this->repository0->updateOtherData($calculation->otherData);
+        }
 
         // update calculations into database
 
