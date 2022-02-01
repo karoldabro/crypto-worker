@@ -50,11 +50,6 @@ class OrderTest extends TestCase
            'side' => $order['side'],
            'price' => $order['price'],
            'quantity' => $order['quantity'],
-           'activation_price' => $order['activation_price'],
-           'stop_loss' => $order['stop_loss'],
-           'registered_at' => $order['registered_at'],
-           'executed_at' => $order['executed_at'],
-           'closed_at' => $order['closed_at'],
         ]);
     }
 
@@ -125,21 +120,16 @@ class OrderTest extends TestCase
 
         $this->assertDatabaseHas('orders', [
             'id' => $order->id,           
-            'external_id' => $data['external_id'],           
-            'active_strategy_id' => $data['active_strategy_id'],           
-            'strategy_id' => $data['strategy_id'],           
-            'exchange_id' => $data['exchange_id'],           
+            'external_id' => $order['external_id'],           
+            'active_strategy_id' => $order['active_strategy_id'],           
+            'strategy_id' => $order['strategy_id'],           
+            'exchange_id' => $order['exchange_id'],           
             'status' => $data['status'],           
-            'symbol' => $data['symbol'],           
             'type' => $data['type'],           
+            'symbol' => $order['symbol'],           
             'side' => $data['side'],           
             'price' => $data['price'],           
             'quantity' => $data['quantity'],           
-            'activation_price' => $data['activation_price'],           
-            'stop_loss' => $data['stop_loss'],           
-            'registered_at' => $data['registered_at'],           
-            'executed_at' => $data['executed_at'],           
-            'closed_at' => $data['closed_at'],
         ]);
     }
     

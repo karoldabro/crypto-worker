@@ -16,9 +16,15 @@ class OrderFactory extends Factory
     {
         return [ 
             'external_id' => $this->faker->slug(2),
-            'strategy_id' => Strategy::factory(),
-            'exchange_id' => Exchange::factory(),
             'active_strategy_id' => ActiveStrategy::factory(),
+            'strategy_id' => function(array $attributes) {
+                $ac = ActiveStrategy::find($attributes['active_strategy_id']);
+                return Strategy::find($ac->strategy_id);
+            },
+            'exchange_id' => function(array $attributes) {
+                $ac = ActiveStrategy::find($attributes['active_strategy_id']);
+                return Exchange::find($ac->exchange_id);
+            },
             'status' => 'NEW',
             'symbol' => 'BTC:USDT',
             'type' => 'STOP_LOSS',

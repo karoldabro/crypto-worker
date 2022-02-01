@@ -18,10 +18,10 @@ class CreateOrdersTable extends Migration
             $table->string('symbol'); 
             $table->string('type'); 
             $table->string('side')->comment('Long or Short'); 
-            $table->double('price')->default(20,12); 
+            $table->double('price',20,12); 
             $table->integer('quantity'); 
-            $table->double('activation_price')->default(20,12)->nullable(); 
-            $table->double('stop_loss')->default(20,12)->nullable(); 
+            $table->double('activation_price',20,12)->nullable(); 
+            $table->double('stop_loss',20,12)->nullable(); 
             $table->timestamp('registered_at')->comment('When is registered on exchange')->nullable(); 
             $table->timestamp('executed_at')->comment('When is activated at exchange')->nullable(); 
             $table->timestamp('closed_at')->nullable(); 

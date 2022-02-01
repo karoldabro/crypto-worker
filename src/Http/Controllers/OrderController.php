@@ -8,8 +8,9 @@ use Kdabrow\CryptoWorker\Http\Requests\UpdateOrderRequest;
 use Kdabrow\CryptoWorker\Repositories\OrderRepository;
 use Kdabrow\CryptoWorker\Http\Resources\OrderResource;
 use \Illuminate\Http\JsonResponse;
+use Kdabrow\CryptoWorker\Repositories\ActiveStrategyRepository;
 
-class OrderController extends Controller 
+class OrderController extends Controller
 {
     /** 
      * @OA\Get(
@@ -35,9 +36,15 @@ class OrderController extends Controller
      *     @OA\Response(response=201, description="Created", @OA\JsonContent(@OA\Schema(ref="#/components/schemas/OrderResource")))
      * )
      */
-    public function store(StoreOrderRequest $request, OrderRepository $repository): JsonResponse
+    public function store(StoreOrderRequest $request, OrderRepository $repository, ActiveStrategyRepository $activeStrategyRepository): JsonResponse
     {
-        $order = $repository->create($request->validated());
+        $activeStrategy = $activeStrategyRepository->find($request->input('active_strategy_id'));
+
+        $order = $repository->create([
+            ...$request->validated(), 
+            'exchange_id' => $activeStrategy->exchange_id, 
+            'strategy_id' => $activeStrategy->strategy_id,
+        ]);
 
         return response()->json(new OrderResource($order), 201);
     }
