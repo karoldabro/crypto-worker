@@ -3,6 +3,7 @@
 namespace Kdabrow\CryptoWorker\Worker;
 
 use Carbon\CarbonInterface;
+use Kdabrow\CryptoWorker\Bot\Klines;
 use Kdabrow\CryptoWorkerContract\Exchange\ExchangeInterface;
 use Kdabrow\CryptoWorkerContract\Strategy\StrategyInterface;
 use Kdabrow\CryptoWorkerContract\Worker\RepositoryInterface;
@@ -19,29 +20,17 @@ class Worker
 
     public function executeStrategy(StrategyInterface $strategy, CarbonInterface $calculationDate): void
     {
-        if ($quantityOfMissingKlines = $this->repository->isSynced($calculationDate)) {
-            $klines = $this->exchange->klines(
-                $this->data->getSymbol(),
-                $this->data->getKlineInterval(),
-                $quantityOfMissingKlines
-            );
+        /** @var Klines $klines */
+        $klines = app(Klines::class, ['repository' => $this->repository, 'exchange' => $this->exchange, 'data' => $this->data]);
 
-            $this->repository->updateKlines($klines);
-        }
-
-        $klines = $this->repository->get(
-            $calculationDate->copy()->sub($this->data->getRefreshInterval()),
-            $calculationDate
-        );
-
-        $calculation = $strategy->calculate($klines);
+        $calculation = $strategy->calculate($klines->getFresh($calculationDate));
 
         if ($calculation->indicators) {
             $this->repository->updateIndicators($calculation->indicators);
         }
 
         if ($calculation->otherData) {
-            $this->repository0->updateOtherData($calculation->otherData);
+            $this->repository->updateOtherData($calculation->otherData);
         }
 
         // update calculations into database
