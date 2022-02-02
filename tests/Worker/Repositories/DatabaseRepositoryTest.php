@@ -30,13 +30,11 @@ class DatabaseRepositoryTest extends TestCase
     {
         $as = ActiveStrategy::factory(['symbol' => 'USD:BTC', 'kline_interval' => '15m', 'refresh_interval' => 'T5M'])->create();
 
-        $since = new Carbon("2021-06-15 11:55:00");
-
-        Kline::factory(['interval' => '15m', 'symbol' => 'USD:BTC', 'exchange_id' => $as->exchange_id, 'timestamp' => $since])->create();
+        Kline::factory(['interval' => '15m', 'symbol' => 'USD:BTC', 'exchange_id' => $as->exchange_id, 'timestamp' => new Carbon("2021-06-15 11:55:00")])->create();
 
         $source = new DatabaseRepository($as, new KlineRepository);
 
-        $this->assertEquals(1, $source->isSynced($since));
+        $this->assertEquals(1, $source->isSynced(new Carbon("2021-06-15 12:00:00")));
     }
 
     /** @test */
@@ -44,12 +42,10 @@ class DatabaseRepositoryTest extends TestCase
     {
         $as = ActiveStrategy::factory(['symbol' => 'USD:BTC', 'kline_interval' => '15m', 'refresh_interval' => 'T5M'])->create();
 
-        $since = new Carbon("2021-06-15 11:54:59");
-
-        Kline::factory(['interval' => '15m', 'symbol' => 'USD:BTC', 'exchange_id' => $as->exchange_id, 'timestamp' => $since])->create();
+        Kline::factory(['interval' => '15m', 'symbol' => 'USD:BTC', 'exchange_id' => $as->exchange_id, 'timestamp' => new Carbon("2021-06-15 11:54:59")])->create();
 
         $source = new DatabaseRepository($as, new KlineRepository);
 
-        $this->assertEquals(0, $source->isSynced($since));
+        $this->assertEquals(0, $source->isSynced(new Carbon("2021-06-15 12:00:00")));
     }
 }

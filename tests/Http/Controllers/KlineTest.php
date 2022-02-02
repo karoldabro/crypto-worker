@@ -45,8 +45,8 @@ class KlineTest extends TestCase
            'low' => $kline['low'],
            'close' => $kline['close'],
            'volume' => $kline['volume'],
-           'indicators' => $kline['indicators'],
-           'other_data' => $kline['other_data'],
+        //    'indicators' => $kline['indicators'],
+        //    'other_data' => $kline['other_data'],
         ]);
     }
 
@@ -118,8 +118,8 @@ class KlineTest extends TestCase
             'low' => $data['low'],           
             'close' => $data['close'],           
             'volume' => $data['volume'],           
-            'indicators' => $data['indicators'],           
-            'other_data' => $data['other_data'],
+            // 'indicators' => $data['indicators'],           
+            // 'other_data' => $data['other_data'],
         ]);
     }
     

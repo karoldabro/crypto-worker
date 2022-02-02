@@ -23,6 +23,8 @@ class KlineFactory extends Factory
             'low' => $this->faker->randomNumber(),
             'close' => $this->faker->randomNumber(),
             'volume' => $this->faker->randomNumber(),
+            // 'indicators' => $this->faker->words,
+            // 'other_data' => $this->faker->words,
         ];
     }
 
