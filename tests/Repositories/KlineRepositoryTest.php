@@ -17,7 +17,7 @@ class KlineRepositoryTest extends TestCase
 
         $since = new Carbon("2021-06-15 12:00:00");
 
-        Kline::factory(['interval' => '15m', 'pair' => 'USD:BTC', 'exchange_id' => $exchange->id, 'timestamp' => $since])->create();
+        Kline::factory(['interval' => '15m', 'symbol' => 'USD:BTC', 'exchange_id' => $exchange->id, 'timestamp' => $since])->create();
 
         $repository = new KlineRepository();
 
@@ -31,7 +31,7 @@ class KlineRepositoryTest extends TestCase
 
         $since = new Carbon("2021-06-15 12:00:00");
 
-        Kline::factory(['interval' => '15m', 'pair' => 'USD:BTC', 'exchange_id' => $exchange->id])->until($since->copy()->subMinute())->count(10)->create();
+        Kline::factory(['interval' => '15m', 'symbol' => 'USD:BTC', 'exchange_id' => $exchange->id])->until($since->copy()->subMinute())->count(10)->create();
 
         $repository = new KlineRepository();
 

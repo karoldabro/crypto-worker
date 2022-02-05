@@ -10,7 +10,7 @@ class CreateKlinesTable extends Migration
     {
         Schema::create('klines', function (Blueprint $table) { 
             $table->bigIncrements('id'); 
-            $table->string('pair'); 
+            $table->string('symbol'); 
             $table->uuid('exchange_id'); 
             $table->timestamp('timestamp'); 
             $table->string('interval'); 

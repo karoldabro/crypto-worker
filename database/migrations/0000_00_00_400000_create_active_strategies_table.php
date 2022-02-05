@@ -12,7 +12,7 @@ class CreateActiveStrategiesTable extends Migration
             $table->uuid('id'); 
             $table->uuid('strategy_id'); 
             $table->uuid('exchange_id'); 
-            $table->string('pair'); 
+            $table->string('symbol'); 
             $table->string('kline_interval')->comment('Kandle interval')->nullable(); 
             $table->integer('kline_quantity')->comment('How much klines goes to strategy calculation'); 
             $table->string('refresh_interval')->comment('How frequently strategy is calculated')->nullable(); 

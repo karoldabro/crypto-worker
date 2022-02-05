@@ -14,22 +14,32 @@ class DatabaseRepository implements RepositoryInterface
     {
     }
     
-    public function isSynced(CarbonInterface $since): bool
+    public function isSynced(CarbonInterface $since): int
     {
         return $this->repository->existsInGivenPeriod(
-            $this->data->getPair(),
+            $this->data->getSymbol(),
             $this->data->getKlineInterval(),
             $this->data->getExchangeId(),
             $since->subtract($this->data->getRefreshInterval())
         );
     }
 
-    public function update(): bool
+    public function updateKlines(Collection $klines): bool
     {
 
     }
 
     public function get(CarbonInterface $since, CarbonInterface $until): Collection
+    {
+
+    }
+    
+    public function updateIndicators(array $indicators): bool
+    {
+
+    }
+
+    public function updateOtherData(array $otherData): bool
     {
 
     }

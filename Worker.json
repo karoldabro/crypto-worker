@@ -518,7 +518,7 @@
                             "type": "bigIncrements"
                         },
                         {
-                            "name": "pair",
+                            "name": "symbol",
                             "allowNull": false,
                             "cast": "",
                             "collation": "",
@@ -845,6 +845,64 @@
                                 "parameter": ""
                             },
                             "type": "decimal"
+                        },
+                        {
+                            "name": "indicators",
+                            "allowNull": true,
+                            "cast": "array",
+                            "collation": "",
+                            "comment": "Indicators calculated in strategy",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": [
+                                    {
+                                        "name": "array",
+                                        "value": ""
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "",
+                                "parameter": ""
+                            },
+                            "type": "jsonb"
+                        },
+                        {
+                            "name": "other_data",
+                            "allowNull": true,
+                            "cast": "array",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": [
+                                    {
+                                        "name": "array",
+                                        "value": ""
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "",
+                                "parameter": ""
+                            },
+                            "type": "jsonb"
                         }
                     ]
                 },
@@ -982,7 +1040,7 @@
                             "type": "uuid"
                         },
                         {
-                            "name": "pair",
+                            "name": "symbol",
                             "allowNull": false,
                             "cast": "",
                             "collation": "",
@@ -1147,6 +1205,546 @@
                 },
                 "relationManager": {
                     "list": [
+                        {
+                            "name": "strategy",
+                            "parameter": "Strategy::class",
+                            "type": "belongsTo"
+                        },
+                        {
+                            "name": "exchange",
+                            "parameter": "Exchange::class",
+                            "type": "belongsTo"
+                        }
+                    ]
+                }
+            },
+            {
+                "name": "Order",
+                "description": "",
+                "script": "",
+                "tableName": "orders",
+                "fieldManager": {
+                    "list": [
+                        {
+                            "name": "id",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "",
+                                "parameter": ""
+                            },
+                            "type": "uuid"
+                        },
+                        {
+                            "name": "external_id",
+                            "allowNull": true,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "Id on exchange",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": [
+                                    {
+                                        "name": "required",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "string",
+                                        "value": ""
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "method",
+                                "value": "slug",
+                                "parameter": "2"
+                            },
+                            "type": "string"
+                        },
+                        {
+                            "name": "active_strategy_id",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": [
+                                    {
+                                        "name": "required",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "uuid",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "exists",
+                                        "value": "active_strategies"
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "",
+                                "parameter": ""
+                            },
+                            "type": "uuid"
+                        },
+                        {
+                            "name": "strategy_id",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "Strategy::factory()",
+                                "parameter": ""
+                            },
+                            "type": "uuid"
+                        },
+                        {
+                            "name": "exchange_id",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": []
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "Exchange::factory()",
+                                "parameter": ""
+                            },
+                            "type": "uuid"
+                        },
+                        {
+                            "name": "status",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "Describes what is happening with order",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": [
+                                    {
+                                        "name": "required",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "string",
+                                        "value": ""
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "'NEW'",
+                                "parameter": ""
+                            },
+                            "type": "string"
+                        },
+                        {
+                            "name": "symbol",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": [
+                                    {
+                                        "name": "required",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "string",
+                                        "value": ""
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "'BTC:USDT'",
+                                "parameter": ""
+                            },
+                            "type": "string"
+                        },
+                        {
+                            "name": "type",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": [
+                                    {
+                                        "name": "required",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "string",
+                                        "value": ""
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "'STOP_LOSS'",
+                                "parameter": ""
+                            },
+                            "type": "string"
+                        },
+                        {
+                            "name": "side",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "Long or Short",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": [
+                                    {
+                                        "name": "required",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "string",
+                                        "value": ""
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "method",
+                                "value": "shuffleArray",
+                                "parameter": "'SHORT', 'LONG'"
+                            },
+                            "type": "string"
+                        },
+                        {
+                            "name": "price",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "20,12",
+                            "ruleManager": {
+                                "list": [
+                                    {
+                                        "name": "required",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "numeric",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "min",
+                                        "value": "0"
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "method",
+                                "value": "numberBetween",
+                                "parameter": "0.0001, 100000"
+                            },
+                            "type": "double"
+                        },
+                        {
+                            "name": "quantity",
+                            "allowNull": false,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": [
+                                    {
+                                        "name": "required",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "integer",
+                                        "value": ""
+                                    },
+                                    {
+                                        "name": "min",
+                                        "value": "1"
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "method",
+                                "value": "numberBetween",
+                                "parameter": "0, 1000"
+                            },
+                            "type": "integer"
+                        },
+                        {
+                            "name": "activation_price",
+                            "allowNull": true,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "20,12",
+                            "ruleManager": {
+                                "list": [
+                                    {
+                                        "name": "numeric",
+                                        "value": ""
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "",
+                                "parameter": "0.0001, 100000"
+                            },
+                            "type": "double"
+                        },
+                        {
+                            "name": "stop_loss",
+                            "allowNull": true,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "20,12",
+                            "ruleManager": {
+                                "list": [
+                                    {
+                                        "name": "numeric",
+                                        "value": ""
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "",
+                                "parameter": ""
+                            },
+                            "type": "double"
+                        },
+                        {
+                            "name": "registered_at",
+                            "allowNull": true,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "When is registered on exchange",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": [
+                                    {
+                                        "name": "integer",
+                                        "value": ""
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "",
+                                "parameter": ""
+                            },
+                            "type": "timestamp"
+                        },
+                        {
+                            "name": "executed_at",
+                            "allowNull": true,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "When is activated at exchange",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": [
+                                    {
+                                        "name": "integer",
+                                        "value": ""
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "",
+                                "parameter": ""
+                            },
+                            "type": "timestamp"
+                        },
+                        {
+                            "name": "closed_at",
+                            "allowNull": true,
+                            "cast": "",
+                            "collation": "",
+                            "comment": "",
+                            "fillable": true,
+                            "hidden": false,
+                            "included": true,
+                            "length": "",
+                            "useCurrent": false,
+                            "unsigned": false,
+                            "value": "",
+                            "ruleManager": {
+                                "list": [
+                                    {
+                                        "name": "integer",
+                                        "value": ""
+                                    }
+                                ]
+                            },
+                            "seed": {
+                                "unique": false,
+                                "type": "raw",
+                                "value": "",
+                                "parameter": ""
+                            },
+                            "type": "timestamp"
+                        }
+                    ]
+                },
+                "indexManager": {
+                    "list": [
+                        {
+                            "name": 0.36418635499024,
+                            "fieldManager": {
+                                "list": [
+                                    {
+                                        "name": "id"
+                                    }
+                                ]
+                            },
+                            "type": "primary"
+                        }
+                    ]
+                },
+                "dataManager": {
+                    "list": []
+                },
+                "relationManager": {
+                    "list": [
+                        {
+                            "name": "active_strategy",
+                            "parameter": "ActiveStrategy::class",
+                            "type": "belongsTo"
+                        },
                         {
                             "name": "strategy",
                             "parameter": "Strategy::class",

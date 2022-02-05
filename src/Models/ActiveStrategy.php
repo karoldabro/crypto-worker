@@ -17,7 +17,7 @@ use Kdabrow\CryptoWorkerContract\Worker\WorkerDataInterface;
  * @property string $id  
  * @property string $strategy_id  
  * @property string $exchange_id  
- * @property string $pair  
+ * @property string $symbol  
  * @property string $kline_interval Kandle interval 
  * @property integer $kline_quantity How much klines goes to strategy calculation 
  * @property string $refresh_interval How frequently strategy is calculated
@@ -49,7 +49,7 @@ class ActiveStrategy extends Model implements WorkerDataInterface
     protected $fillable = [ 
         'strategy_id', 
         'exchange_id', 
-        'pair', 
+        'symbol', 
         'kline_interval', 
         'kline_quantity', 
         'refresh_interval', 
