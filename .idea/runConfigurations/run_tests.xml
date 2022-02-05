@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="run tests" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+    <CommandLine>
+      <PhpTestInterpreterSettings>
+        <option name="interpreterName" value="php" />
+      </PhpTestInterpreterSettings>
+    </CommandLine>
+    <TestRunner class="Kdabrow\CryptoWorker\Tests\Worker\Repositories\DatabaseRepositoryTest" configuration_file="phpunit.xml" file="$PROJECT_DIR$/tests/Worker/Repositories/DatabaseRepositoryTest.php" method="it_is_synced_while_database_has_klines_from_strategy_refresh_interval" scope="XML" />
+    <method v="2" />
+  </configuration>
+</component>
